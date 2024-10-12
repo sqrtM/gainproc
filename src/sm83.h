@@ -25,4 +25,4 @@ void init_registers(Sm83_Registers *regs);
 void set_register(Sm83_Registers *regs, E_Sm83_Registers reg, int16_t value);
 int16_t get_register(const Sm83_Registers *regs, E_Sm83_Registers reg);
 
-#endif // MY_STRUCT_H
+#endif

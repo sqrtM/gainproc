@@ -1,13 +1,9 @@
 #include <stdio.h>
 #include "test_sm83.h"
 
-int run_tests() {
-    printf("Running tests...\n");
-    // test code
-    return 0;
-}
-
 int main() {
-    run_tests();
+    printf("Running tests...\n");
+    test_init_registers();
+    test_set_get_register();
     return 0;
 }

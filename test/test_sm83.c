@@ -21,13 +21,13 @@ void test_set_get_register() {
     if (get_register(&regs, AF) != 0x1234) {
         printf("test_set_get_register failed: AF not set correctly\n");
     } else {
-        printf("test_set_get_register passed\n");
+        printf("test_set_get_register AF passed\n");
     }
 
     set_register(&regs, BC, 0x5678);
     if (get_register(&regs, BC) != 0x5678) {
         printf("test_set_get_register failed: BC not set correctly\n");
     } else {
-        printf("test_set_get_register passed\n");
+        printf("test_set_get_register BC passed\n");
     }
 }
