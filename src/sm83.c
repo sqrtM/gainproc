@@ -32,19 +32,19 @@ void set_register(Sm83_Registers *regs, E_Sm83_Registers reg, int16_t value) {
     }
 }
 
-int16_t get_register(const Sm83_Registers *regs, E_Sm83_Registers reg) {
+const sm83_register *get_register(const Sm83_Registers *regs, E_Sm83_Registers reg) {
     switch (reg) {
         case AF:
-            return regs->AF;
+            return &regs->AF;
         case BC:
-            return regs->BC;
+            return &regs->BC;
         case DE:
-            return regs->DE;
+            return &regs->DE;
         case HL:
-            return regs->HL;
+            return &regs->HL;
         case SP:
-            return regs->SP;
+            return &regs->SP;
         case PC:
-            return regs->PC;
+            return &regs->PC;
     }
 }
