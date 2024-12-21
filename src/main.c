@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "sm83.h"
+#include "mix.h"
 
 #ifndef TEST_MODE
 int main() {
