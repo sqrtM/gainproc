@@ -6,6 +6,8 @@
 #include <stdlib.h>
 
 bool test_init_mix() {
+    print_start_test("test_init_mix");
+
     s_Mix mix;
     init_mix(&mix);
 
@@ -21,6 +23,8 @@ bool test_init_mix() {
 }
 
 bool test_shift_behavior() {
+    print_start_test("test_shift_behavior");
+
     s_Word *t = (s_Word *)malloc(sizeof(s_Word));
     t->value = 0b1000000000000000000000000;
 
@@ -49,9 +53,9 @@ bool test_shift_behavior() {
         }
         t->value = t->value >> 1;
     }
+    print_info("1 - forward");
 
     t->value = 1;
-
     for (int i = 24; i >= 0; i--) {
         if (t->value != expected_values[i]) {
             char formatted_string[100];
@@ -62,6 +66,7 @@ bool test_shift_behavior() {
         }
         t->value = t->value << 1;
     }
+    print_info("2 - backward");
 
     free(t);
     print_ok("test_shift_behavior");
@@ -69,6 +74,8 @@ bool test_shift_behavior() {
 }
 
 bool test_generate_mask() {
+    print_start_test("test_generate_mask");
+
     struct {
         uint8_t l;
         uint8_t r;

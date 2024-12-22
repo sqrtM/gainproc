@@ -5,6 +5,14 @@ void print_ok(const char *test) {
     printf(COLOR_GREEN CHECK_MARK " %s passed" COLOR_RESET "\n", test);
 }
 
+void print_start_test(const char *test) {
+    printf(COLOR_CYAN INFO " %s starting ..." COLOR_RESET "\n", test);
+}
+
+void print_info(const char *test) {
+    printf(COLOR_YELLOW "   " RIGHT_ARROW " %s ok" COLOR_RESET "\n", test);
+}
+
 void print_ko(const char *test, const char *message) {
     printf(COLOR_RED CROSS_MARK " %s " RIGHT_ARROW " FAILED: %s" COLOR_RESET
                                 "\n",
