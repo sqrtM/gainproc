@@ -33,10 +33,8 @@ typedef s_Large_Register s_Word;
 
 typedef struct s_Small_Register {
     bool sign;
-    uint16_t value : 10;
+    uint16_t value : 12;
 } s_Small_Register;
-
-typedef enum { A, X, AX, I1, I2, I3, I4, I5, I6, J } e_Registers;
 
 typedef enum { E, L, G } e_Comp;
 
