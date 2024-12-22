@@ -1,7 +1,6 @@
-#include <stdio.h>
-#include <stdbool.h>
 #include "test_mix.h"
 #include "test_utils.h"
+#include <stdio.h>
 
 int main() {
     print_init_test_message();
