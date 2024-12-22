@@ -5,8 +5,8 @@ SRC_DIR = src
 TEST_DIR = test
 BUILD_DIR = build
 
-SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
-TEST_FILES = $(wildcard $(TEST_DIR)/*.c)
+SRC_FILES = $(shell find $(SRC_DIR) -name '*.c')
+TEST_FILES = $(shell find $(TEST_DIR) -name '*.c')
 
 MAIN_EXEC = $(BUILD_DIR)/main
 TEST_EXEC = $(BUILD_DIR)/test

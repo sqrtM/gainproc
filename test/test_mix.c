@@ -67,3 +67,38 @@ bool test_shift_behavior() {
     print_ok("test_shift_behavior");
     return true;
 }
+
+bool test_generate_mask() {
+    struct {
+        uint8_t l;
+        uint8_t r;
+        unsigned int expected;
+    } test_cases[] = {
+        {0, 0, 0},
+        {1, 1, 0b111111000000000000000000000000},
+        {1, 2, 0b111111111111000000000000000000},
+        {1, 3, 0b111111111111111111000000000000},
+        {1, 4, 0b111111111111111111111111000000},
+        {1, 5, 0b111111111111111111111111111111},
+        {2, 4, 0b000000111111111111111111000000},
+        {3, 3, 0b000000000000111111000000000000},
+        {1, 0, 0},
+        {4, 0, 0},
+        {39, 11, 0},
+    };
+
+    for (size_t i = 0; i < sizeof(test_cases) / sizeof(test_cases[0]); i++) {
+        unsigned int result = generate_mask(test_cases[i].l, test_cases[i].r);
+        if (result != test_cases[i].expected) {
+            char formatted_string[100];
+            snprintf(formatted_string, sizeof(formatted_string),
+                     "expected 0x%08X, got 0x%08X", test_cases[i].expected,
+                     result);
+            print_ko("test_generate_mask", formatted_string);
+            return false;
+        }
+    }
+
+    print_ok("test_generate_mask");
+    return true;
+}

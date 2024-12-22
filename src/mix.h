@@ -1,6 +1,26 @@
 #ifndef MIX
 #define MIX
 
+#define MASK_5_5 0x00_00_00_00_FF
+#define MASK_4_5 0x00_00_00_FF_FF
+#define MASK_3_5 0x00_00_FF_FF_FF
+#define MASK_2_5 0x00_FF_FF_FF_FF
+#define MASK_1_5 0xFF_FF_FF_FF_FF
+
+#define MASK_4_4 0x00_00_00_FF_00
+#define MASK_3_4 0x00_00_FF_FF_00
+#define MASK_2_4 0x00_FF_FF_FF_00
+#define MASK_1_4 0xFF_FF_FF_FF_00
+
+#define MASK_3_3 0x00_00_FF_00_00
+#define MASK_2_3 0x00_FF_FF_00_00
+#define MASK_1_3 0xFF_FF_FF_00_00
+
+#define MASK_2_2 0x00_FF_00_00_00
+#define MASK_1_2 0xFF_FF_00_00_00
+
+#define MASK_1_1 0xFF_00_00_00_00
+
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -36,4 +56,15 @@ typedef struct {
 } s_Mix;
 
 void init_mix(s_Mix *mix);
+
+typedef struct s_Field {
+    uint8_t l;
+    uint8_t r;
+    bool s;
+} s_Field;
+
+s_Field to_field(unsigned int f);
+
+unsigned int generate_mask(uint8_t l, uint8_t r);
+
 #endif

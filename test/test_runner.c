@@ -1,5 +1,6 @@
 #include "test_mix.h"
 #include "test_utils.h"
+#include "test_load.h"
 #include <stdio.h>
 
 int main() {
@@ -8,6 +9,8 @@ int main() {
 
     all_tests_ok &= test_init_mix();
     all_tests_ok &= test_shift_behavior();
+    all_tests_ok &= test_generate_mask();
+    all_tests_ok &= test_lda();
 
     all_tests_ok ? print_test_success() : print_test_failure();
 

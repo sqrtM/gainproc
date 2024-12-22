@@ -44,3 +44,36 @@ void init_mix(s_Mix *regs) {
     s_Word *mem = malloc(sizeof(s_Word) * 40);
     regs->memory = mem;
 }
+
+s_Field to_field(unsigned int f) {
+    s_Field* field = malloc(sizeof(s_Field));
+    field->l = f / 8;
+    field->r = f % 8;
+    field->s = field->l == 0;
+
+    return *field;
+}
+
+unsigned int generate_mask(uint8_t l, uint8_t r) {
+    unsigned int mask = 0;
+
+    if (l > r || l > 5 || r > 5) {
+        return mask;
+    }
+
+    if (l == 0 && r != 0) {
+        l = 1;
+    }
+
+    if (!(l == 0 && r == 0)) {
+        for (unsigned int i = 0; i < ((r - l) + 1) * 6; i++) {
+            mask |= (1 << i);
+        }
+    }
+
+    if (r != 0) {
+        mask = mask << ((5 - r) * 6);
+    }
+
+    return mask;
+}
