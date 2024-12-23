@@ -1,5 +1,4 @@
 #include "load.h"
-#include <stdio.h>
 
 int lda(s_Mix *mix, unsigned int addr, unsigned int field, bool negative) {
     s_Word contents_m = mix->memory[addr];

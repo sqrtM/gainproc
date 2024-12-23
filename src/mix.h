@@ -26,7 +26,7 @@
 
 typedef struct s_Large_Register {
     bool sign;
-    unsigned int value : 25;
+    unsigned int value : 30;
 } s_Large_Register;
 
 typedef s_Large_Register s_Word;
