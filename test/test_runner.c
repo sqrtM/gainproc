@@ -2,6 +2,7 @@
 #include "test_mix.h"
 #include "test_store.h"
 #include "test_utils.h"
+#include "test_math.h"
 
 int main() {
     print_init_test_message();
@@ -20,6 +21,8 @@ int main() {
     all_tests_ok &= test_sti();
     all_tests_ok &= test_stj();
     all_tests_ok &= test_stz();
+
+    all_tests_ok &= test_add();
 
     all_tests_ok ? print_test_success() : print_test_failure();
 

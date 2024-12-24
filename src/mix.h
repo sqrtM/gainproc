@@ -1,25 +1,7 @@
 #ifndef MIX
 #define MIX
 
-#define MASK_5_5 0x00_00_00_00_FF
-#define MASK_4_5 0x00_00_00_FF_FF
-#define MASK_3_5 0x00_00_FF_FF_FF
-#define MASK_2_5 0x00_FF_FF_FF_FF
-#define MASK_1_5 0xFF_FF_FF_FF_FF
-
-#define MASK_4_4 0x00_00_00_FF_00
-#define MASK_3_4 0x00_00_FF_FF_00
-#define MASK_2_4 0x00_FF_FF_FF_00
-#define MASK_1_4 0xFF_FF_FF_FF_00
-
-#define MASK_3_3 0x00_00_FF_00_00
-#define MASK_2_3 0x00_FF_FF_00_00
-#define MASK_1_3 0xFF_FF_FF_00_00
-
-#define MASK_2_2 0x00_FF_00_00_00
-#define MASK_1_2 0xFF_FF_00_00_00
-
-#define MASK_1_1 0xFF_00_00_00_00
+#define WORD_MAX 0b111111111111111111111111111111
 
 #include <stdbool.h>
 #include <stdint.h>
