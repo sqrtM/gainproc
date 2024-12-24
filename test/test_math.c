@@ -3,7 +3,6 @@
 #include "test_utils.h"
 
 #include <stdbool.h>
-#include <stdio.h>
 
 bool test_add() {
     print_start_test("test_add");
@@ -20,7 +19,7 @@ bool test_add() {
         print_ko("test_add", "Test 1 failed, 1 + 1 :(");
         return false;
     }
-    print_info("1 - basic load");
+    print_info("1 - basic add");
 
     mix.memory[1].value = 0b111111000000111111000000111111;
     mix.memory[1].sign = true;
@@ -39,7 +38,6 @@ bool test_add() {
     mix.A->sign = true;
     add(&mix, 2, 5);
     if (mix.A->value != 1 || mix.A->sign != false) {
-        printf("%u\n", mix.A->value);
         print_ko("test_add", "Test 3 failed, different signs basic");
         return false;
     }
@@ -51,6 +49,58 @@ bool test_add() {
     mix.A->sign = true;
     add(&mix, 3, 5);
     if (mix.A->value != 5 || mix.A->sign != true || mix.overflow != true) {
+        print_ko("test_add", "Test 4 failed, overflow");
+        return false;
+    }
+    print_info("4 - overflow");
+    return true;
+}
+
+bool test_sub() {
+    print_start_test("test_sub");
+
+    s_Mix mix;
+    init_mix(&mix);
+
+    mix.memory[0].value = 1;
+    mix.memory[0].sign = true;
+    mix.A->value = 2;
+    mix.A->sign = true;
+    sub(&mix, 0, 5);
+    if (mix.A->value != 1) {
+        print_ko("test_sub", "Test 1 failed, 2 - 1 :(");
+        return false;
+    }
+    print_info("1 - basic sub");
+
+    mix.memory[1].value = 0b111111111111111111000000111111;
+    mix.memory[1].sign = true;
+    mix.A->value = 0b111111111111111111111111111111;
+    mix.A->sign = true;
+    sub(&mix, 1, 29);
+    if (mix.A->value != 0b111111111111000000111111000000) {
+        print_ko("test_sub", "Test 2 failed, sub with field");
+        return false;
+    }
+    print_info("2 - sub with field");
+
+    mix.memory[2].value = 2000;
+    mix.memory[2].sign = false;
+    mix.A->value = 1234;
+    mix.A->sign = false;
+    sub(&mix, 2, 5);
+    if (mix.A->value != 766 || mix.A->sign != true) {
+        print_ko("test_add", "Test 3 failed, sign flip");
+        return false;
+    }
+    print_info("3 - sign flip");
+
+    mix.memory[3].value = 6;
+    mix.memory[3].sign = true;
+    mix.A->value = 0b111111111111111111111111111111;
+    mix.A->sign = false;
+    sub(&mix, 3, 5);
+    if (mix.A->value != 5 || mix.A->sign != false || mix.overflow != true) {
         print_ko("test_add", "Test 4 failed, overflow");
         return false;
     }
