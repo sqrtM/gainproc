@@ -1,10 +1,7 @@
 #include "test_store.h"
 #include "../src/instructions/store.h"
 #include "test_utils.h"
-
 #include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 bool test_sta() {
     print_start_test("test_sta");
@@ -28,7 +25,8 @@ bool test_sta() {
     mix.memory[1].value = 0b101010111111000000111111000000;
     mix.memory[1].sign = true;
     sta(&mix, 1, 20);
-    if (mix.memory[1].value != 0b101010010101010101111111000000 || mix.memory[1].sign != true) {
+    if (mix.memory[1].value != 0b101010010101010101111111000000 ||
+        mix.memory[1].sign != true) {
         print_ko("test_sta", "Test 2 failed, store with shift issue");
         return false;
     }
@@ -39,7 +37,8 @@ bool test_sta() {
     mix.memory[2].value = 0b000001000010000011000100000101;
     mix.memory[2].sign = false;
     sta(&mix, 2, 5);
-    if (mix.memory[2].value != 0b000110000111001000001001000000 || mix.memory[2].sign != true) {
+    if (mix.memory[2].value != 0b000110000111001000001001000000 ||
+        mix.memory[2].sign != true) {
         print_ko("test_sta", "Test 3 failed, book test 1 issue");
         return false;
     }
@@ -50,7 +49,8 @@ bool test_sta() {
     mix.memory[3].value = 0b000001000010000011000100000101;
     mix.memory[3].sign = false;
     sta(&mix, 3, 13);
-    if (mix.memory[3].value != 0b000110000111001000001001000000 || mix.memory[3].sign != false) {
+    if (mix.memory[3].value != 0b000110000111001000001001000000 ||
+        mix.memory[3].sign != false) {
         print_ko("test_sta", "Test 4 failed, book test 2 issue");
         return false;
     }
@@ -61,7 +61,8 @@ bool test_sta() {
     mix.memory[4].value = 0b000001000010000011000100000101;
     mix.memory[4].sign = false;
     sta(&mix, 4, 45);
-    if (mix.memory[4].value != 0b000001000010000011000100000000 || mix.memory[4].sign != false) {
+    if (mix.memory[4].value != 0b000001000010000011000100000000 ||
+        mix.memory[4].sign != false) {
         print_ko("test_sta", "Test 5 failed, book test 3 issue");
         return false;
     }
@@ -72,7 +73,8 @@ bool test_sta() {
     mix.memory[5].value = 0b000001000010000011000100000101;
     mix.memory[5].sign = false;
     sta(&mix, 5, 18);
-    if (mix.memory[5].value != 0b000001000000000011000100000101 || mix.memory[5].sign != false) {
+    if (mix.memory[5].value != 0b000001000000000011000100000101 ||
+        mix.memory[5].sign != false) {
         print_ko("test_sta", "Test 6 failed, book test 4 issue");
         return false;
     }
@@ -83,7 +85,8 @@ bool test_sta() {
     mix.memory[6].value = 0b000001000010000011000100000101;
     mix.memory[6].sign = false;
     sta(&mix, 6, 19);
-    if (mix.memory[6].value != 0b000001001001000000000100000101 || mix.memory[6].sign != false) {
+    if (mix.memory[6].value != 0b000001001001000000000100000101 ||
+        mix.memory[6].sign != false) {
         print_ko("test_sta", "Test 6 failed, book test 5 issue");
         return false;
     }
@@ -94,7 +97,8 @@ bool test_sta() {
     mix.memory[7].value = 0b000001000010000011000100000101;
     mix.memory[7].sign = false;
     sta(&mix, 7, 1);
-    if (mix.memory[7].value != 0b000000000010000011000100000101 || mix.memory[7].sign != true) {
+    if (mix.memory[7].value != 0b000000000010000011000100000101 ||
+        mix.memory[7].sign != true) {
         print_ko("test_sta", "Test 8 failed, book test 6 issue");
         return false;
     }
@@ -126,7 +130,8 @@ bool test_stx() {
     mix.memory[1].value = 0b101010111111000000111111000000;
     mix.memory[1].sign = true;
     stx(&mix, 1, 20);
-    if (mix.memory[1].value != 0b101010010101010101111111000000 || mix.memory[1].sign != true) {
+    if (mix.memory[1].value != 0b101010010101010101111111000000 ||
+        mix.memory[1].sign != true) {
         print_ko("test_stx", "Test 2 failed, store with shift issue");
         return false;
     }
@@ -137,7 +142,8 @@ bool test_stx() {
     mix.memory[2].value = 0b000001000010000011000100000101;
     mix.memory[2].sign = false;
     stx(&mix, 2, 5);
-    if (mix.memory[2].value != 0b000110000111001000001001000000 || mix.memory[2].sign != true) {
+    if (mix.memory[2].value != 0b000110000111001000001001000000 ||
+        mix.memory[2].sign != true) {
         print_ko("test_stx", "Test 3 failed, book test 1 issue");
         return false;
     }
@@ -148,7 +154,8 @@ bool test_stx() {
     mix.memory[3].value = 0b000001000010000011000100000101;
     mix.memory[3].sign = false;
     stx(&mix, 3, 13);
-    if (mix.memory[3].value != 0b000110000111001000001001000000 || mix.memory[3].sign != false) {
+    if (mix.memory[3].value != 0b000110000111001000001001000000 ||
+        mix.memory[3].sign != false) {
         print_ko("test_stx", "Test 4 failed, book test 2 issue");
         return false;
     }
@@ -159,7 +166,8 @@ bool test_stx() {
     mix.memory[4].value = 0b000001000010000011000100000101;
     mix.memory[4].sign = false;
     stx(&mix, 4, 45);
-    if (mix.memory[4].value != 0b000001000010000011000100000000 || mix.memory[4].sign != false) {
+    if (mix.memory[4].value != 0b000001000010000011000100000000 ||
+        mix.memory[4].sign != false) {
         print_ko("test_stx", "Test 5 failed, book test 3 issue");
         return false;
     }
@@ -170,7 +178,8 @@ bool test_stx() {
     mix.memory[5].value = 0b000001000010000011000100000101;
     mix.memory[5].sign = false;
     stx(&mix, 5, 18);
-    if (mix.memory[5].value != 0b000001000000000011000100000101 || mix.memory[5].sign != false) {
+    if (mix.memory[5].value != 0b000001000000000011000100000101 ||
+        mix.memory[5].sign != false) {
         print_ko("test_stx", "Test 6 failed, book test 4 issue");
         return false;
     }
@@ -181,7 +190,8 @@ bool test_stx() {
     mix.memory[6].value = 0b000001000010000011000100000101;
     mix.memory[6].sign = false;
     stx(&mix, 6, 19);
-    if (mix.memory[6].value != 0b000001001001000000000100000101 || mix.memory[6].sign != false) {
+    if (mix.memory[6].value != 0b000001001001000000000100000101 ||
+        mix.memory[6].sign != false) {
         print_ko("test_stx", "Test 6 failed, book test 5 issue");
         return false;
     }
@@ -192,7 +202,8 @@ bool test_stx() {
     mix.memory[7].value = 0b000001000010000011000100000101;
     mix.memory[7].sign = false;
     stx(&mix, 7, 1);
-    if (mix.memory[7].value != 0b000000000010000011000100000101 || mix.memory[7].sign != true) {
+    if (mix.memory[7].value != 0b000000000010000011000100000101 ||
+        mix.memory[7].sign != true) {
         print_ko("test_stx", "Test 8 failed, book test 6 issue");
         return false;
     }
@@ -203,7 +214,8 @@ bool test_stx() {
     mix.memory[8].value = 0b000001000010000011000100000101;
     mix.memory[8].sign = false;
     stx(&mix, 8, 1);
-    if (mix.memory[8].value != 0b000000000010000011000100000101 || mix.memory[8].sign != true) {
+    if (mix.memory[8].value != 0b000000000010000011000100000101 ||
+        mix.memory[8].sign != true) {
         print_ko("test_stx", "Test 9 failed, 0:1 issue");
         return false;
     }
@@ -214,7 +226,8 @@ bool test_stx() {
     mix.memory[9].value = 0b000001000010000011000100000101;
     mix.memory[9].sign = false;
     stx(&mix, 9, 2);
-    if (mix.memory[9].value != 0b001001000000000011000100000101 || mix.memory[9].sign != true) {
+    if (mix.memory[9].value != 0b001001000000000011000100000101 ||
+        mix.memory[9].sign != true) {
         print_ko("test_stx", "Test 10 failed, 0:2 issue");
         return false;
     }
@@ -223,7 +236,6 @@ bool test_stx() {
     print_ok("test_stx");
     return true;
 }
-
 
 bool test_sti() {
     print_start_test("test_sti");
@@ -258,7 +270,8 @@ bool test_sti() {
     mix.memory[2].value = 0b111111000000111111000000111111;
     mix.memory[2].sign = false;
     sti(&mix, 2, 3, 3);
-    if (mix.memory[2].value != 0b000000100000100000000000111111 || mix.memory[2].sign != true) {
+    if (mix.memory[2].value != 0b000000100000100000000000111111 ||
+        mix.memory[2].sign != true) {
         print_ko("test_sti", "Test 3 failed, store with sign");
         return false;
     }
@@ -269,7 +282,8 @@ bool test_sti() {
     mix.memory[4].value = 0b111111000000111111000000111111;
     mix.memory[4].sign = false;
     sti(&mix, 4, 4, 36);
-    if (mix.memory[4].value != 0b111111000000111111111111111111 || mix.memory[4].sign != false) {
+    if (mix.memory[4].value != 0b111111000000111111111111111111 ||
+        mix.memory[4].sign != false) {
         print_ko("test_sti", "Test 4 failed, store one");
         return false;
     }
@@ -312,7 +326,8 @@ bool test_stj() {
     mix.memory[2].value = 0b111111000000111111000000111111;
     mix.memory[2].sign = false;
     stj(&mix, 2, 3);
-    if (mix.memory[2].value != 0b000000100000100000000000111111 || mix.memory[2].sign != true) {
+    if (mix.memory[2].value != 0b000000100000100000000000111111 ||
+        mix.memory[2].sign != true) {
         print_ko("test_stj", "Test 3 failed, store with sign");
         return false;
     }
@@ -323,12 +338,51 @@ bool test_stj() {
     mix.memory[4].value = 0b111111000000111111000000111111;
     mix.memory[4].sign = false;
     stj(&mix, 4, 36);
-    if (mix.memory[4].value != 0b111111000000111111111111111111 || mix.memory[4].sign != false) {
+    if (mix.memory[4].value != 0b111111000000111111111111111111 ||
+        mix.memory[4].sign != false) {
         print_ko("test_stj", "Test 4 failed, store one");
         return false;
     }
     print_info("4 - store one");
 
     print_ok("test_stj");
+    return true;
+}
+
+bool test_stz() {
+    print_start_test("test_stz");
+
+    s_Mix mix;
+    init_mix(&mix);
+
+    mix.memory[0].value = 0b001000111111000100111111111101;
+    mix.memory[0].sign = true;
+    stz(&mix, 0, 5);
+    if (mix.memory[0].value != 0) {
+        print_ko("test_stz", "Test 1 failed, basic store issue");
+        return false;
+    }
+    print_info("1 - basic store");
+
+    mix.memory[2].value = 0b111111111111111111111111111111;
+    mix.memory[2].sign = false;
+    stz(&mix, 2, 3);
+    if (mix.memory[2].value != 0b111111111111 || mix.memory[2].sign != true) {
+        print_ko("test_stz", "Test 2 failed, store issue");
+        return false;
+    }
+    print_info("2 - left store");
+
+    mix.memory[3].value = 0b111111111111111111111111111111;
+    mix.memory[3].sign = false;
+    stz(&mix, 3, 36);
+    if (mix.memory[3].value != 0b111111111111111111000000111111 ||
+        mix.memory[3].sign != false) {
+        print_ko("test_stz", "Test 3 failed, single store issue");
+        return false;
+    }
+    print_info("3 - single store");
+
+    print_ok("test_stz");
     return true;
 }
