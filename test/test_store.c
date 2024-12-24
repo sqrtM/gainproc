@@ -34,6 +34,72 @@ bool test_sta() {
     }
     print_info("2 - store with shift");
 
+    mix.A->value = 0b000110000111001000001001000000;
+    mix.A->sign = true;
+    mix.memory[2].value = 0b000001000010000011000100000101;
+    mix.memory[2].sign = false;
+    sta(&mix, 2, 5);
+    if (mix.memory[2].value != 0b000110000111001000001001000000 || mix.memory[2].sign != true) {
+        print_ko("test_sta", "Test 3 failed, book test 1 issue");
+        return false;
+    }
+    print_info("3 - book test 1");
+
+    mix.A->value = 0b000110000111001000001001000000;
+    mix.A->sign = true;
+    mix.memory[3].value = 0b000001000010000011000100000101;
+    mix.memory[3].sign = false;
+    sta(&mix, 3, 13);
+    if (mix.memory[3].value != 0b000110000111001000001001000000 || mix.memory[3].sign != false) {
+        print_ko("test_sta", "Test 4 failed, book test 2 issue");
+        return false;
+    }
+    print_info("4 - book test 2");
+
+    mix.A->value = 0b000110000111001000001001000000;
+    mix.A->sign = true;
+    mix.memory[4].value = 0b000001000010000011000100000101;
+    mix.memory[4].sign = false;
+    sta(&mix, 4, 45);
+    if (mix.memory[4].value != 0b000001000010000011000100000000 || mix.memory[4].sign != false) {
+        print_ko("test_sta", "Test 5 failed, book test 3 issue");
+        return false;
+    }
+    print_info("5 - book test 3");
+
+    mix.A->value = 0b000110000111001000001001000000;
+    mix.A->sign = true;
+    mix.memory[5].value = 0b000001000010000011000100000101;
+    mix.memory[5].sign = false;
+    sta(&mix, 5, 18);
+    if (mix.memory[5].value != 0b000001000000000011000100000101 || mix.memory[5].sign != false) {
+        print_ko("test_sta", "Test 6 failed, book test 4 issue");
+        return false;
+    }
+    print_info("6 - book test 4");
+
+    mix.A->value = 0b000110000111001000001001000000;
+    mix.A->sign = true;
+    mix.memory[6].value = 0b000001000010000011000100000101;
+    mix.memory[6].sign = false;
+    sta(&mix, 6, 19);
+    if (mix.memory[6].value != 0b000001001001000000000100000101 || mix.memory[6].sign != false) {
+        print_ko("test_sta", "Test 6 failed, book test 5 issue");
+        return false;
+    }
+    print_info("7 - book test 5");
+
+    mix.A->value = 0b000110000111001000001001000000;
+    mix.A->sign = true;
+    mix.memory[7].value = 0b000001000010000011000100000101;
+    mix.memory[7].sign = false;
+    sta(&mix, 7, 1);
+    if (mix.memory[7].value != 0b000000000010000011000100000101 || mix.memory[7].sign != true) {
+        print_ko("test_sta", "Test 8 failed, book test 6 issue");
+        return false;
+    }
+    print_info("8 - book test 6");
+
     print_ok("test_sta");
     return true;
 }
