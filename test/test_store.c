@@ -198,6 +198,86 @@ bool test_stx() {
     }
     print_info("8 - book test 6");
 
+    mix.X->value = 0b000110000111001000001001000000;
+    mix.X->sign = true;
+    mix.memory[8].value = 0b000001000010000011000100000101;
+    mix.memory[8].sign = false;
+    stx(&mix, 8, 1);
+    if (mix.memory[8].value != 0b000000000010000011000100000101 || mix.memory[8].sign != true) {
+        print_ko("test_stx", "Test 9 failed, 0:1 issue");
+        return false;
+    }
+    print_info("9 - 0:1");
+
+    mix.X->value = 0b000110000111001000001001000000;
+    mix.X->sign = true;
+    mix.memory[9].value = 0b000001000010000011000100000101;
+    mix.memory[9].sign = false;
+    stx(&mix, 9, 2);
+    if (mix.memory[9].value != 0b001001000000000011000100000101 || mix.memory[9].sign != true) {
+        print_ko("test_stx", "Test 10 failed, 0:2 issue");
+        return false;
+    }
+    print_info("10 - 0:2");
+
     print_ok("test_stx");
+    return true;
+}
+
+
+bool test_sti() {
+    print_start_test("test_sti");
+
+    s_Mix mix;
+    init_mix(&mix);
+
+    mix.I1->value = 0b111111000000;
+    mix.I1->sign = true;
+    mix.memory[0].value = 0b001000111111000100111111111101;
+    mix.memory[0].sign = true;
+    sti(&mix, 0, 1, 5);
+    if (mix.memory[0].value != 0b0000000000000000000111111000000) {
+        print_ko("test_sti", "Test 1 failed, basic store issue");
+        return false;
+    }
+    print_info("1 - basic store");
+
+    mix.I2->value = 0b111111000000;
+    mix.I2->sign = true;
+    mix.memory[1].value = 0b111111111111111111111111111111;
+    mix.memory[1].sign = true;
+    sti(&mix, 1, 2, 20);
+    if (mix.memory[1].value != 0b111111000000111111000000111111) {
+        print_ko("test_sti", "Test 2 failed, store with shift issue");
+        return false;
+    }
+    print_info("2 - store with shift");
+
+    mix.I3->value = 0b100000100000;
+    mix.I3->sign = true;
+    mix.memory[2].value = 0b111111000000111111000000111111;
+    mix.memory[2].sign = false;
+    sti(&mix, 2, 3, 3);
+    if (mix.memory[2].value != 0b000000100000100000000000111111 || mix.memory[2].sign != true) {
+        print_ko("test_sti", "Test 3 failed, store with sign");
+        return false;
+    }
+    print_info("3 - store with sign");
+
+    print_ok("test_sti");
+    return true;
+
+    mix.I4->value = 0b100000111111;
+    mix.I4->sign = true;
+    mix.memory[4].value = 0b111111000000111111000000111111;
+    mix.memory[4].sign = false;
+    sti(&mix, 4, 4, 36);
+    if (mix.memory[4].value != 0b111111000000111111111111111111 || mix.memory[4].sign != false) {
+        print_ko("test_sti", "Test 4 failed, store one");
+        return false;
+    }
+    print_info("4 - store one");
+
+    print_ok("test_sti");
     return true;
 }
