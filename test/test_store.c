@@ -264,9 +264,6 @@ bool test_sti() {
     }
     print_info("3 - store with sign");
 
-    print_ok("test_sti");
-    return true;
-
     mix.I4->value = 0b100000111111;
     mix.I4->sign = true;
     mix.memory[4].value = 0b111111000000111111000000111111;
@@ -279,5 +276,59 @@ bool test_sti() {
     print_info("4 - store one");
 
     print_ok("test_sti");
+    return true;
+}
+
+bool test_stj() {
+    print_start_test("test_stj");
+
+    s_Mix mix;
+    init_mix(&mix);
+
+    mix.J->value = 0b111111000000;
+    mix.J->sign = true;
+    mix.memory[0].value = 0b001000111111000100111111111101;
+    mix.memory[0].sign = true;
+    stj(&mix, 0, 5);
+    if (mix.memory[0].value != 0b0000000000000000000111111000000) {
+        print_ko("test_stj", "Test 1 failed, basic store issue");
+        return false;
+    }
+    print_info("1 - basic store");
+
+    mix.J->value = 0b111111000000;
+    mix.J->sign = true;
+    mix.memory[1].value = 0b111111111111111111111111111111;
+    mix.memory[1].sign = true;
+    stj(&mix, 1, 20);
+    if (mix.memory[1].value != 0b111111000000111111000000111111) {
+        print_ko("test_stj", "Test 2 failed, store with shift issue");
+        return false;
+    }
+    print_info("2 - store with shift");
+
+    mix.J->value = 0b100000100000;
+    mix.J->sign = true;
+    mix.memory[2].value = 0b111111000000111111000000111111;
+    mix.memory[2].sign = false;
+    stj(&mix, 2, 3);
+    if (mix.memory[2].value != 0b000000100000100000000000111111 || mix.memory[2].sign != true) {
+        print_ko("test_stj", "Test 3 failed, store with sign");
+        return false;
+    }
+    print_info("3 - store with sign");
+
+    mix.J->value = 0b100000111111;
+    mix.J->sign = true;
+    mix.memory[4].value = 0b111111000000111111000000111111;
+    mix.memory[4].sign = false;
+    stj(&mix, 4, 36);
+    if (mix.memory[4].value != 0b111111000000111111111111111111 || mix.memory[4].sign != false) {
+        print_ko("test_stj", "Test 4 failed, store one");
+        return false;
+    }
+    print_info("4 - store one");
+
+    print_ok("test_stj");
     return true;
 }

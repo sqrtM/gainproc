@@ -19,6 +19,7 @@ int main() {
     all_tests_ok &= test_sta();
     all_tests_ok &= test_stx();
     all_tests_ok &= test_sti();
+    all_tests_ok &= test_stj();
 
     all_tests_ok ? print_test_success() : print_test_failure();
 

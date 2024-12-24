@@ -54,5 +54,13 @@ int sti(s_Mix *mix, unsigned int addr, unsigned int i, unsigned int field) {
     return 0;
 }
 
-// int stj(s_Mix *mix, unsigned int addr, unsigned int field);
+int stj(s_Mix *mix, unsigned int addr, unsigned int field) {
+    s_Word contents_j;
+    contents_j.value = 0;
+    contents_j.value |= mix->J->value;
+    contents_j.sign = true;
+
+    mix->memory[addr] = get_stored_value(mix->memory[addr], contents_j, to_field(field));
+    return 0;
+}
 // int stz(s_Mix *mix, unsigned int addr, unsigned int field);
