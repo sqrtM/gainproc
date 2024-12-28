@@ -1,6 +1,6 @@
 #include "store.h"
 
-s_Word get_stored_value(s_Word m, s_Word r, s_Field f) {
+s_Word construct_value_to_store(s_Word m, s_Word r, s_Field f) {
     m.value &= ~generate_mask(f.l, f.r);
 
     if (f.l == 0) {
@@ -16,13 +16,13 @@ s_Word get_stored_value(s_Word m, s_Word r, s_Field f) {
 
 int sta(s_Mix *mix, unsigned int addr, unsigned int field) {
     mix->memory[addr] =
-        get_stored_value(mix->memory[addr], *mix->A, to_field(field));
+        construct_value_to_store(mix->memory[addr], *mix->A, to_field(field));
     return 0;
 }
 
 int stx(s_Mix *mix, unsigned int addr, unsigned int field) {
     mix->memory[addr] =
-        get_stored_value(mix->memory[addr], *mix->X, to_field(field));
+        construct_value_to_store(mix->memory[addr], *mix->X, to_field(field));
     return 0;
 }
 
@@ -52,7 +52,7 @@ int sti(s_Mix *mix, unsigned int addr, unsigned int i, unsigned int field) {
     contents_i.sign = i_register->sign;
 
     mix->memory[addr] =
-        get_stored_value(mix->memory[addr], contents_i, to_field(field));
+        construct_value_to_store(mix->memory[addr], contents_i, to_field(field));
     return 0;
 }
 
@@ -63,7 +63,7 @@ int stj(s_Mix *mix, unsigned int addr, unsigned int field) {
     contents_j.sign = true;
 
     mix->memory[addr] =
-        get_stored_value(mix->memory[addr], contents_j, to_field(field));
+        construct_value_to_store(mix->memory[addr], contents_j, to_field(field));
     return 0;
 }
 
@@ -75,6 +75,6 @@ int stz(s_Mix *mix, unsigned int addr, unsigned int field) {
     contents_z.sign = true;
 
     mix->memory[addr] =
-        get_stored_value(mix->memory[addr], contents_z, to_field(field));
+        construct_value_to_store(mix->memory[addr], contents_z, to_field(field));
     return 0;
 }

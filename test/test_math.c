@@ -2,6 +2,7 @@
 #include "../src/instructions/math.h"
 #include "test_utils.h"
 
+#include <stdio.h>
 #include <stdbool.h>
 
 bool test_add() {
@@ -105,5 +106,58 @@ bool test_sub() {
         return false;
     }
     print_info("4 - overflow");
+    return true;
+}
+
+bool test_mul() {
+    print_start_test("test_mul");
+
+    s_Mix mix;
+    init_mix(&mix);
+
+    mix.memory[0].value = 2;
+    mix.memory[0].sign = true;
+    mix.A->value = 2;
+    mix.A->sign = true;
+    mul(&mix, 0, 5);
+    if (mix.A->value != 0 || mix.X->value != 4) {
+        print_ko("test_mul", "Test 1 failed, 2 * 2 :(");
+        return false;
+    }
+    print_info("1 - basic mul");
+
+    mix.memory[1].value = 0b111111000000000010001000000000;
+    mix.memory[1].sign = true;
+    mix.A->value = 2;
+    mix.A->sign = true;
+    mul(&mix, 1, 28);
+    if (mix.A->value != 0 || mix.X->value != 272) {
+        print_ko("test_mul", "Test 2 failed, mul with field");
+        return false;
+    }
+    print_info("2 - mul with field");
+
+    mix.memory[2].value = 4;
+    mix.memory[2].sign = true;
+    mix.A->value = 4;
+    mix.A->sign = false;
+    mul(&mix, 2, 5);
+    if (mix.A->value != 0 || mix.X->value != 16 || mix.A->sign != false || mix.X->sign != false) {
+        print_ko("test_mul", "Test 3 failed, sign flip");
+        return false;
+    }
+    print_info("3 - sign flip");
+
+    mix.memory[3].value = WORD_MAX;
+    mix.memory[3].sign = true;
+    mix.A->value = 7;
+    mix.A->sign = true;
+    mul(&mix, 3, 5);
+    if (mix.A->value != 0b110 || mix.X->value != 0b111111111111111111111111111001 || mix.A->sign != true || mix.X->sign != true) {
+        print_ko("test_mul", "Test 4 failed, across registers");
+        return false;
+    }
+    print_info("4 - across registers");
+
     return true;
 }
