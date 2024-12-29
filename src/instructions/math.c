@@ -1,5 +1,4 @@
 #include "math.h"
-#include <stdio.h>
 
 unsigned int mask_value(unsigned int field, unsigned int v) {
     s_Field f = to_field(field);
@@ -80,4 +79,25 @@ int mul(s_Mix *mix, unsigned int addr, unsigned int field) {
     return 0;
 }
 
-// int div(s_Mix *mix, unsigned int addr, unsigned int field);
+int div(s_Mix *mix, unsigned int addr, unsigned int field) {
+    s_Combined_Registers result;
+    result.value = (unsigned long long)(mix->A->value) << 29;
+    result.value |= mix->X->value;
+    result.sign = mix->A->sign;
+    s_Word v = mix->memory[addr];
+
+    v.value = mask_value(field, v.value);
+
+    // Go ahead and set sign of rX now before we do anything
+    mix->X->sign = mix->A->sign;
+
+    if (v.value == 0 || mix->A->value >= v.value)
+        mix->overflow = true;
+
+    // If an "overflow" has occurred, rA and rX are technically undefined.
+    // Since this is the case, we still TRY and conduct the operation.
+    mix->A->value = result.value / v.value;
+    mix->X->value = result.value % v.value;
+    mix->A->sign = result.sign && v.sign;
+    return 0;
+}

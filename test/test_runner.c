@@ -25,6 +25,7 @@ int main() {
     all_tests_ok &= test_add();
     all_tests_ok &= test_sub();
     all_tests_ok &= test_mul();
+    all_tests_ok &= test_div();
 
     all_tests_ok ? print_test_success() : print_test_failure();
 
