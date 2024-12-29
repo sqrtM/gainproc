@@ -46,7 +46,7 @@ void init_mix(s_Mix *regs) {
 }
 
 s_Field to_field(unsigned int f) {
-    s_Field* field = malloc(sizeof(s_Field));
+    s_Field *field = malloc(sizeof(s_Field));
     field->l = f / 8;
     field->r = f % 8;
     field->s = field->l == 0;
@@ -76,4 +76,27 @@ unsigned int generate_mask(uint8_t l, uint8_t r) {
     }
 
     return mask;
+}
+
+s_Small_Register *get_i_register(s_Mix *mix, unsigned int i) {
+    s_Small_Register *i_register = NULL;
+
+    if (i == 1) {
+        i_register = mix->I1;
+    } else if (i == 2) {
+        i_register = mix->I2;
+    } else if (i == 3) {
+        i_register = mix->I3;
+    } else if (i == 4) {
+        i_register = mix->I4;
+    } else if (i == 5) {
+        i_register = mix->I5;
+    } else if (i == 6) {
+        i_register = mix->I6;
+    } else {
+        i_register->value = 0;
+        i_register->sign = false;
+    }
+
+    return i_register;
 }

@@ -27,32 +27,18 @@ int stx(s_Mix *mix, unsigned int addr, unsigned int field) {
 }
 
 int sti(s_Mix *mix, unsigned int addr, unsigned int i, unsigned int field) {
-    s_Small_Register *i_register;
-
-    if (i == 1) {
-        i_register = mix->I1;
-    } else if (i == 2) {
-        i_register = mix->I2;
-    } else if (i == 3) {
-        i_register = mix->I3;
-    } else if (i == 4) {
-        i_register = mix->I4;
-    } else if (i == 5) {
-        i_register = mix->I5;
-    } else if (i == 6) {
-        i_register = mix->I6;
-    } else {
-        // bad input
+    if (i > 6 || i < 1)
         return 1;
-    }
+
+    s_Small_Register *i_register = get_i_register(mix, i);
 
     s_Word contents_i;
     contents_i.value = 0;
     contents_i.value |= i_register->value;
     contents_i.sign = i_register->sign;
 
-    mix->memory[addr] =
-        construct_value_to_store(mix->memory[addr], contents_i, to_field(field));
+    mix->memory[addr] = construct_value_to_store(mix->memory[addr], contents_i,
+                                                 to_field(field));
     return 0;
 }
 
@@ -62,8 +48,8 @@ int stj(s_Mix *mix, unsigned int addr, unsigned int field) {
     contents_j.value |= mix->J->value;
     contents_j.sign = true;
 
-    mix->memory[addr] =
-        construct_value_to_store(mix->memory[addr], contents_j, to_field(field));
+    mix->memory[addr] = construct_value_to_store(mix->memory[addr], contents_j,
+                                                 to_field(field));
     return 0;
 }
 
@@ -74,7 +60,7 @@ int stz(s_Mix *mix, unsigned int addr, unsigned int field) {
     // so we assume it is a "positive zero" if it ever comes down to that.
     contents_z.sign = true;
 
-    mix->memory[addr] =
-        construct_value_to_store(mix->memory[addr], contents_z, to_field(field));
+    mix->memory[addr] = construct_value_to_store(mix->memory[addr], contents_z,
+                                                 to_field(field));
     return 0;
 }

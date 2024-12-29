@@ -2,6 +2,7 @@
 #define MIX
 
 #define WORD_MAX 0b111111111111111111111111111111
+#define HALF_WORD_MAX 0b111111111111
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -44,7 +45,7 @@ typedef struct s_Field {
 } s_Field;
 
 s_Field to_field(unsigned int f);
-
 unsigned int generate_mask(uint8_t l, uint8_t r);
+s_Small_Register *get_i_register(s_Mix *mix, unsigned int i);
 
 #endif

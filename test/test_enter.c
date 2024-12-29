@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 bool test_enter() {
-    print_start_test("test_lda");
+    print_start_test("test_enter");
 
     s_Mix mix;
     init_mix(&mix);

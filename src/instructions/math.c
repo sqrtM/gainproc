@@ -6,30 +6,35 @@ unsigned int mask_value(unsigned int field, unsigned int v) {
     return v >> ((5 - f.r) * 6);
 }
 
+s_Word add_words(s_Word r, s_Word v) {
+    s_Word result;
+
+    if (r.sign == v.sign) {
+        result.value = r.value + v.value;
+        result.sign = r.sign;
+    } else {
+        if (r.value >= v.value) {
+            result.value = r.value - v.value;
+        } else {
+            result.value = v.value - r.value;
+        }
+        result.sign = r.sign == r.value >= v.value;
+    }
+
+    return result;
+}
+
 int add(s_Mix *mix, unsigned int addr, unsigned int field) {
     s_Word a = *mix->A;
     s_Word v = mix->memory[addr];
 
     v.value = mask_value(field, v.value);
 
-    s_Word result;
-
-    if (a.sign == v.sign) {
-        if (a.value > WORD_MAX - v.value) {
-            mix->overflow = true;
-        }
-        result.value = a.value + v.value;
-        result.sign = a.sign;
-    } else {
-        if (a.value >= v.value) {
-            result.value = a.value - v.value;
-        } else {
-            result.value = v.value - a.value;
-        }
-        result.sign = a.sign == a.value >= v.value;
+    if (a.value > WORD_MAX - v.value && a.sign == v.sign) {
+        mix->overflow = true;
     }
 
-    *mix->A = result;
+    *mix->A = add_words(a, v);
     return 0;
 }
 

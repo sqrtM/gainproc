@@ -1,4 +1,5 @@
 #include "test_enter.h"
+#include "test_incdec.h"
 #include "test_load.h"
 #include "test_math.h"
 #include "test_mix.h"
@@ -29,6 +30,8 @@ int main() {
     all_tests_ok &= test_div();
 
     all_tests_ok &= test_enter();
+
+    all_tests_ok &= test_inc();
 
     all_tests_ok ? print_test_success() : print_test_failure();
 
