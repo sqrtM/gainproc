@@ -1,3 +1,4 @@
+#include "test_comp.h"
 #include "test_enter.h"
 #include "test_incdec.h"
 #include "test_load.h"
@@ -33,6 +34,10 @@ int main() {
 
     all_tests_ok &= test_inc();
     all_tests_ok &= test_dec();
+
+    all_tests_ok &= test_cmpa();
+    all_tests_ok &= test_cmpx();
+    all_tests_ok &= test_cmpi();
 
     all_tests_ok ? print_test_success() : print_test_failure();
 
