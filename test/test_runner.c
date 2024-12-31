@@ -32,6 +32,7 @@ int main() {
     all_tests_ok &= test_enter();
 
     all_tests_ok &= test_inc();
+    all_tests_ok &= test_dec();
 
     all_tests_ok ? print_test_success() : print_test_failure();
 

@@ -6,6 +6,7 @@ typedef struct s_Combined_Registers {
 } s_Combined_Registers;
 
 s_Word add_words(s_Word r, s_Word v);
+s_Word sub_words(s_Word r, s_Word v);
 
 int add(s_Mix *mix, unsigned int addr, unsigned int field);
 int sub(s_Mix *mix, unsigned int addr, unsigned int field);
