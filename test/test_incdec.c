@@ -3,8 +3,6 @@
 #include "test_utils.h"
 
 #include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 bool test_inc() {
     print_start_test("test_inc");

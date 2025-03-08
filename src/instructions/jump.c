@@ -105,7 +105,7 @@ int jca(s_Mix *mix, unsigned int addr, e_Jump_Condition_Register cond) {
 int jcx(s_Mix *mix, unsigned int addr, e_Jump_Condition_Register cond) {
     switch (cond) {
         case NEGATIVE:
-            if (!mix->X->sign && mix->A->value != 0) {
+            if (!mix->X->sign && mix->X->value != 0) {
                 _jump(mix, addr, false);
             }
             break;
@@ -115,7 +115,7 @@ int jcx(s_Mix *mix, unsigned int addr, e_Jump_Condition_Register cond) {
             }
             break;
         case POSITIVE:
-            if (mix->X->sign && mix->A->value != 0) {
+            if (mix->X->sign && mix->X->value != 0) {
                 _jump(mix, addr, false);
             }
             break;
@@ -143,7 +143,7 @@ int jci(s_Mix *mix, unsigned int addr, unsigned int i, e_Jump_Condition_Register
 
     switch (cond) {
         case NEGATIVE:
-            if (!i_register->sign && mix->A->value != 0) {
+            if (!i_register->sign && i_register->value != 0) {
                 _jump(mix, addr, false);
             }
             break;
@@ -153,7 +153,7 @@ int jci(s_Mix *mix, unsigned int addr, unsigned int i, e_Jump_Condition_Register
             }
             break;
         case POSITIVE:
-            if (i_register->sign && mix->A->value != 0) {
+            if (i_register->sign && i_register->value != 0) {
                 _jump(mix, addr, false);
             }
             break;

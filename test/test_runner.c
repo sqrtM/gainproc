@@ -6,6 +6,7 @@
 #include "test_mix.h"
 #include "test_store.h"
 #include "test_utils.h"
+#include "test_jump.h"
 
 int main() {
     print_init_test_message();
@@ -38,6 +39,14 @@ int main() {
     all_tests_ok &= test_cmpa();
     all_tests_ok &= test_cmpx();
     all_tests_ok &= test_cmpi();
+
+    all_tests_ok &= test_jmp();
+    all_tests_ok &= test_jov();
+    all_tests_ok &= test_jnov();
+    all_tests_ok &= test_jcc();
+    all_tests_ok &= test_jca();
+    all_tests_ok &= test_jcx();
+    all_tests_ok &= test_jci();
 
     all_tests_ok ? print_test_success() : print_test_failure();
 

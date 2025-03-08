@@ -3,8 +3,6 @@
 #include "test_utils.h"
 
 #include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 bool test_enter() {
     print_start_test("test_enter");
