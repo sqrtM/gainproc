@@ -43,6 +43,7 @@ void init_mix(s_Mix *regs) {
 
     s_Word *mem = malloc(sizeof(s_Word) * 40);
     regs->memory = mem;
+    regs->stack_pointer = 0;
 }
 
 s_Field to_field(unsigned int f) {

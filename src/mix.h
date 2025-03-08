@@ -34,6 +34,7 @@ typedef struct {
     e_Comp comp;
     bool overflow;
     s_Word *memory;
+    unsigned int stack_pointer;
 } s_Mix;
 
 void init_mix(s_Mix *mix);
