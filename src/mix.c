@@ -67,7 +67,7 @@ unsigned int generate_mask(uint8_t l, uint8_t r) {
     }
 
     if (!(l == 0 && r == 0)) {
-        for (unsigned int i = 0; i < ((r - l) + 1) * 6; i++) {
+        for (int i = 0; i < ((r - l) + 1) * 6; i++) {
             mask |= (1 << i);
         }
     }

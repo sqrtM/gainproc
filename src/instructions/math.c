@@ -18,7 +18,7 @@ s_Word add_words(s_Word r, s_Word v) {
         } else {
             result.value = v.value - r.value;
         }
-        result.sign = r.sign == r.value >= v.value;
+        result.sign = r.sign == (r.value >= v.value);
     }
 
     return result;

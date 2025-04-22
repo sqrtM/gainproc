@@ -1,11 +1,11 @@
-#include "test_incdec.h"
 #include "../src/instructions/incdec.h"
+#include "test_incdec.h"
 #include "test_utils.h"
 
 #include <stdbool.h>
 
 bool test_inc() {
-    print_start_test("test_inc");
+    print_start_test(__func__);
 
     s_Mix mix;
     init_mix(&mix);
@@ -32,7 +32,7 @@ bool test_inc() {
     inci(&mix, mi, 3);
     if (mix.A->value != 11 || mix.X->value != 10 || mix.X->sign != true ||
         mix.I3->value != 13) {
-        print_ko("test_inc", "Test 1 failed, basic inc issue");
+        print_ko(__func__, "Test 1 failed, basic inc issue");
         return false;
     }
     print_info("1 - basic inc");
@@ -44,7 +44,7 @@ bool test_inc() {
 
     inca(&mix, ma);
     if (mix.A->value != 5 || mix.overflow != true) {
-        print_ko("test_inc", "Test 2 failed, overflow issue");
+        print_ko(__func__, "Test 2 failed, overflow issue");
         return false;
     }
     print_info("2 - overflow");
@@ -58,7 +58,7 @@ bool test_inc() {
 
     inci(&mix, mi, 5);
     if (mix.I5->value != 5 || mix.overflow != false) {
-        print_ko("test_inc", "Test 3 failed, I undefined overflow issue");
+        print_ko(__func__, "Test 3 failed, I undefined overflow issue");
         return false;
     }
     print_info("3 - I undefined overflow");
@@ -66,7 +66,7 @@ bool test_inc() {
 }
 
 bool test_dec() {
-    print_start_test("test_dec");
+    print_start_test(__func__);
 
     s_Mix mix;
     init_mix(&mix);
@@ -93,7 +93,7 @@ bool test_dec() {
     deci(&mix, mi, 3);
     if (mix.A->value != 9 || mix.X->value != 12 || mix.X->sign != true ||
         mix.I3->value != 11) {
-        print_ko("test_dec", "Test 1 failed, basic dec issue");
+        print_ko(__func__, "Test 1 failed, basic dec issue");
         return false;
     }
     print_info("1 - basic dec");
@@ -107,7 +107,7 @@ bool test_dec() {
 
     deca(&mix, ma);
     if (mix.A->value != 5 || mix.overflow != true) {
-        print_ko("test_dec", "Test 2 failed, overflow issue");
+        print_ko(__func__, "Test 2 failed, overflow issue");
         return false;
     }
     print_info("2 - overflow");
@@ -121,7 +121,7 @@ bool test_dec() {
 
     deci(&mix, mi, 5);
     if (mix.I5->value != 5 || mix.overflow != false) {
-        print_ko("test_dec", "Test 3 failed, I undefined overflow issue");
+        print_ko(__func__, "Test 3 failed, I undefined overflow issue");
         return false;
     }
     print_info("3 - I undefined overflow");

@@ -1,19 +1,29 @@
+#include <string.h>
+
 #include "test_comp.h"
 #include "test_enter.h"
 #include "test_incdec.h"
+#include "test_jump.h"
 #include "test_load.h"
 #include "test_math.h"
 #include "test_mix.h"
 #include "test_store.h"
 #include "test_utils.h"
-#include "test_jump.h"
 
-int main() {
+int main(int argc, char *argv[]) {
+    bool verbose = false;
+
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-v") == 0) {
+            verbose = true;
+        }
+    }
+
     print_init_test_message();
     bool all_tests_ok = true;
 
     all_tests_ok &= test_init_mix();
-    all_tests_ok &= test_shift_behavior();
+    all_tests_ok &= test_shift_behavior(verbose);
     all_tests_ok &= test_generate_mask();
 
     all_tests_ok &= test_lda();
